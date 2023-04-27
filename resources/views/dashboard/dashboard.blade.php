@@ -16,7 +16,7 @@
     <ul>
         <li><a href="/bendahara">Kas</a></li>
         <li><a href="/user">Anggota</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="/logout" class="text-red-700 font-bold">Logout</a></li>
     </ul>
 </body>
 
