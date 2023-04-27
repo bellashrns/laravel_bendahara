@@ -21,9 +21,12 @@ use App\Http\Controllers\DashboardController;
 // sengaja dibikin gini => defaultnya radionbendahara.com tuh ke login
 // jadi nanti di middleware dibikin aja kalo blm login ke lemparnya ke radionbendahara.com/dashboard
 // defaultny yg bagus gini
-Route::get('/', [LoginController::class, 'index']);
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/', [LoginController::class, 'authenticate']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::controller(AdminController::class)->group(function() {
+// fungsi middleware auth biar yg bs masuk cm yg bs login
+Route::middleware('auth')->controller(AdminController::class)->group(function() {
     Route::get('/admin', 'index');
     Route::get('/admin/bendahara', 'bendahara');
     Route::get('/admin/users', 'user');
@@ -31,7 +34,7 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('admin/users', 'add_user');
 });
 
-Route::controller(DashboardController::class)->group(function() {
+Route::middleware('auth')->controller(DashboardController::class)->group(function() {
     Route::get('/dashboard', 'index');
     Route::get('/bendahara', 'bendahara');
     Route::get('/user', 'user');

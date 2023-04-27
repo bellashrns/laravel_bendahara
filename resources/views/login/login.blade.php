@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,21 @@
     @vite('resources/css/app.css')
     <title>UMN Radio | Login</title>
 </head>
+
 <body>
-    <h1 class="text-3xl font-bold underline">
-      Login
-    </h1>
+    <form action="/" method="POST">
+        @csrf
+        <div class="mt-5">
+            <input name="email" type="email" placeholder="Email" class="border-1">
+        </div>
+        <div class="mt-5">
+            <input name="password" type="password" placeholder="Password" class="border-1">
+        </div>
+        <div class="mt-5">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Login
+            </button>
+    </form>
 </body>
+
 </html>
