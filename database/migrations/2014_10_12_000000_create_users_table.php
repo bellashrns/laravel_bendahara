@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('line')->unique();
             $table->date('birthdate');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
