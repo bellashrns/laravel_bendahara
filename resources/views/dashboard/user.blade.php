@@ -19,7 +19,11 @@
             <li>{{ $user->address }}</li>
             <li>{{ $user->line }}</li>
             <li>{{ $user->birthdate }}</li>
+            @if ($user->image)
+                <li><img src="{{ asset('storage/' . $user->image) }}" alt=""></li>
+            @endif
         @endforeach
+    </ul>
 </body>
 
 </html>

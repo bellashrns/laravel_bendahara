@@ -28,8 +28,13 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8|max:20',
-            'line' => 'required|unique:users'
+            'line' => 'required|unique:users',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('images');
+        }
 
         $user = new User;
         $user->name = $request->name;
@@ -39,6 +44,7 @@ class AdminController extends Controller
         $user->address = $request->address;
         $user->line = $request->line;
         $user->password = bcrypt($request->password);
+        $user->image = $image;
         $user->save();
 
         return redirect('/dashboard');
