@@ -26,7 +26,7 @@ Route::post('/', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // fungsi middleware auth biar yg bs masuk cm yg bs login
-Route::middleware('auth')->controller(AdminController::class)->group(function() {
+Route::middleware('admin')->controller(AdminController::class)->group(function() {
     Route::get('/admin', 'index');
     Route::get('/admin/bendahara', 'bendahara');
     Route::get('/admin/users', 'user');
