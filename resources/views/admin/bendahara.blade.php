@@ -16,6 +16,9 @@
         </script>
     @endif
     <h1>Bendahara</h1>
+
+    @foreach ($data_bendahara as $data)
+    @endforeach
 </body>
 
 </html>

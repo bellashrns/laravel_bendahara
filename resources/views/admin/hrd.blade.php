@@ -16,6 +16,8 @@
         </script>
     @endif
     <h1>HRD</h1>
+    @foreach ($data_hrd as $data)
+    @endforeach
 </body>
 
 </html>
