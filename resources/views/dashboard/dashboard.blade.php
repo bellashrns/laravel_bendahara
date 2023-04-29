@@ -17,6 +17,7 @@
         <li><a href="/bendahara">Kas</a></li>
         <li><a href="/user">Anggota</a></li>
         <li><a href="/admin">Admin</a></li>
+        <li><a href="/evaluation">Evaluation</a></li>
         <li><a href="/logout" class="text-red-700 font-bold">Logout</a></li>
     </ul>
 </body>

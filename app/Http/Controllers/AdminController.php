@@ -46,7 +46,7 @@ class AdminController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('images');
+            $image = $request->file('image')->store('profiles');
         }
 
         $user = new User;

@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('bendaharas', function (Blueprint $table) {
             $table->id();
             // image taro sini bella sayang
-           
+            $table->string('image');
             $table->string('month');
             $table->string('type');
             $table->integer('value')->nullable();
             $table->string('notes');
             $table->string("status")
-            ->comment('1:pending, 2:accepted', '3:rejected')->default(1);
+            ->comment('1:pending, 2:accepted, 3:rejected')->default(1);
             $table->date('date');
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();

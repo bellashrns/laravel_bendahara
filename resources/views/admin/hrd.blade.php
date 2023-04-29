@@ -16,8 +16,13 @@
         </script>
     @endif
     <h1>HRD</h1>
+    <ul>
     @foreach ($data_hrd as $data)
+        <li>{{ $data->sender }}</li>
+        <li>{{ $data->receiver }}</li>
+        <li>{{ $data->message }}</li>
     @endforeach
+    </ul>
 </body>
 
 </html>

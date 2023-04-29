@@ -36,25 +36,20 @@
         <input type="date" name="birthdate" id="birthdate"
             class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5" required>
 
-
-
         <label for="phone" class="text-[#000000]">Phone</label>
         <input placeholder="Phone Number" type="text" name="phone" id="phone"
             class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 " value="{{ old('phone') }}"
             required>
 
-
         <label for="address" class="text-[#000000]">Address</label>
         <input placeholder="Address" type="text" name="address" id="address"
-            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5" value="{{ old('address') }}"
-            required>
-
+            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5" 
+            value="{{ old('address') }}" required>
 
         <label for="line" class="text-[#000000]">ID Line</label>
         <input placeholder="ID Line" type="text" name="line" id="line"
             class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5  @error('line') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror"
             required value="{{ old('line') }}">
-
 
         <label for="password" class="text-[#000000]">Password</label>
         <input placeholder="Password" type="password" name="password" id="password"
