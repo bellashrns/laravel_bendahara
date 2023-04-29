@@ -21,6 +21,11 @@ class AdminController extends Controller
     {
         return view('admin.users');
     }
+    
+    public function hrd()
+    {
+        return view('admin.hrd');
+    }
 
     public function add_user (Request $request)
     {

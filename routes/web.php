@@ -30,6 +30,7 @@ Route::middleware('admin')->controller(AdminController::class)->group(function()
     Route::get('/admin', 'index');
     Route::get('/admin/bendahara', 'bendahara');
     Route::get('/admin/users', 'user');
+    Route::get('/admin/hrd', 'hrd');
 
     Route::post('admin/users', 'add_user');
 });

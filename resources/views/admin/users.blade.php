@@ -58,8 +58,8 @@
 
         <label for="image" class="text-[#000000]">Image</label>
         <input placeholder="Image" type="file" name="image" id="image"
-            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 @error('image') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror" value="{{ old('image') }}"
-            required>
+            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 @error('image') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror"
+            value="{{ old('image') }}" required>
 
         <div class="flex flex-row mt-2">
             <button class="btn btn-wide w-full bg-[#000000] mt-2">
