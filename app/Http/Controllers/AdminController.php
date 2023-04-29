@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bendahara;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -14,7 +16,10 @@ class AdminController extends Controller
 
     public function bendahara ()
     {
-        return view('admin.bendahara');
+        $data_bendahara = Bendahara::all();
+        return view('admin.bendahara', [
+            'data_bendahara' => $data_bendahara
+        ]);
     }
 
     public function user ()
@@ -24,7 +29,10 @@ class AdminController extends Controller
     
     public function hrd()
     {
-        return view('admin.hrd');
+        $data_hrd = Message::all();
+        return view('admin.hrd', [
+            'data_hrd' => $data_hrd
+        ]);
     }
 
     public function add_user (Request $request)
