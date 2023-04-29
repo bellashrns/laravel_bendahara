@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    @if (auth()->user()->role != '4')
+        <script>
+            window.location = "/admin";
+        </script>
+    @endif
     <h1>HRD</h1>
 </body>
 

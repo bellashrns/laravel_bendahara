@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    @if (auth()->user()->role != '3')
+        <script>
+            window.location = "/admin";
+        </script>
+    @endif
     <h1>Bendahara</h1>
 </body>
 

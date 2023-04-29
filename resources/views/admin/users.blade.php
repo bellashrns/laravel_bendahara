@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    @if (auth()->user()->role != '1')
+        <script>
+            window.location = "/admin";
+        </script>
+    @endif
     <form action="/admin/users" method="POST" class="grid justify-center" enctype="multipart/form-data">
         @csrf
         <div class="font-bold text-3xl text-black ">
