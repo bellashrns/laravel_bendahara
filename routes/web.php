@@ -22,9 +22,8 @@ use App\Http\Controllers\ResetPasswordController;
 // sengaja dibikin gini => defaultnya radionbendahara.com tuh ke login
 // jadi nanti di middleware dibikin aja kalo blm login ke lemparnya ke radionbendahara.com/dashboard
 // defaultny yg bagus gini
-Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'authenticate']);
-Route::get('/logout', [LoginController::class, 'logout']);
 
 // fungsi middleware auth biar yg bs masuk cm yg bs login
 Route::middleware('admin')->controller(AdminController::class)->group(function() {
@@ -46,6 +45,8 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
 
     Route::post('/bendahara', 'add_kas');
     Route::post('/evaluation', 'add_evaluation');
+
+    Route::get('/logout', 'logout')->name('logout');
 });
 
 

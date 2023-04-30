@@ -8,6 +8,7 @@ use App\Models\Bendahara;
 use App\Models\Message;
 // utk current datetime
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -43,6 +44,18 @@ class DashboardController extends Controller
         return view('dashboard.evaluation', [
             'msgs' => $msgs
         ]);
+    }
+
+    
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     public function add_kas (Request $request)

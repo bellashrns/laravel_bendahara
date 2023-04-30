@@ -9,6 +9,10 @@ class LoginController extends Controller
 {
     public function index()
     {
+        // kalo udh login, ga bs balik ke login
+        if(Auth::check()){
+            return redirect()->intended('/dashboard');
+        }
         return view('login.login');
     }
 
@@ -29,15 +33,10 @@ class LoginController extends Controller
         return back()->with('loginError', 'Login failed!');
     }
 
-    public function logout(Request $request)
+
+    public function logout()
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        return route('login');
     }
 
 }
