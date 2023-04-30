@@ -6,7 +6,14 @@ use Illuminate\Auth\Events\Login;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UpdatePasswordController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +56,11 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
 Route::middleware('auth')->controller(UpdatePasswordController::class)->group(function() {
     Route::get('/password/edit', 'edit')->name('password.edit');
     Route::post('/password/edit', 'update');
+});
+
+Route::middleware('guest')->controller(ResetPasswordController::class)->group(function() {
+    Route::get('/forgot-password', 'index')->name('password.request');
+    Route::post('/forgot-password', 'forgot_password')->name('password.email');
+    Route::get('/reset-password/{token}', 'reset_token')->name('password.reset');
+    Route::post('/reset-password', 'reset')->name('password.update');;
 });

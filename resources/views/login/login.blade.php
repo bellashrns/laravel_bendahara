@@ -18,6 +18,8 @@
         <div class="mt-5">
             <input name="password" type="password" placeholder="Password" class="border-1">
         </div>
+        <p class="text-red-800 font-bold"><a href="{{ route('password.request') }}">forgot password?</a></p>
+
         <div class="mt-5">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Login
