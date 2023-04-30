@@ -63,6 +63,7 @@ class DashboardController extends Controller
         $kas->notes = $request->notes;
         $kas->status = $request->status;
         $kas->date = $currentDatetime;
+        $kas->name = auth()->user()->name;
         $kas->save();
 
         return redirect('/dashboard');

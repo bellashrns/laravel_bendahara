@@ -23,6 +23,7 @@ return new class extends Migration
             ->comment('1:pending, 2:accepted, 3:rejected')->default(1);
             $table->date('date');
             $table->integer('user_id')->unsigned()->nullable();
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

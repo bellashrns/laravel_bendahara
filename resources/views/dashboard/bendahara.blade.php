@@ -31,17 +31,16 @@
 
         <label for="value" class="text-[#000000]">Value</label>
         <input placeholder="Value" type="text" name="value" id="value"
-            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 " 
-            value="{{ old('value') }}">
+            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 " value="{{ old('value') }}">
 
         <label for="notes" class="text-[#000000]">Notes</label>
         <input placeholder="Notes" type="text" name="notes" id="notes"
-            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 @error('notes') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror" 
+            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 @error('notes') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror"
             value="{{ old('notes') }}" required>
 
         <label for="status" class="text-[#000000]">Status</label>
         <input placeholder="Status" type="text" name="status" id="status"
-            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 @error('status') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror" 
+            class="border-1  bg-[#D9D9D9] text-[#312626]  rounded-lg w-72 h-10 p-5 @error('status') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400 @enderror"
             value="{{ old('status') }}" required>
 
         <label for="image" class="text-[#000000]">Image</label>

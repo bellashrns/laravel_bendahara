@@ -32,7 +32,7 @@ Route::middleware('admin')->controller(AdminController::class)->group(function()
     Route::get('/admin/users', 'user');
     Route::get('/admin/hrd', 'hrd');
 
-    Route::post('admin/users', 'add_user');
+    Route::post('/admin/users', 'add_user');
 });
 
 Route::middleware('auth')->controller(DashboardController::class)->group(function() {
@@ -41,6 +41,6 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
     Route::get('/user', 'user');
     Route::get('/evaluation', 'evaluation');
 
-    Route::post('bendahara', 'add_kas');
-    Route::post('evaluation', 'add_evaluation');
+    Route::post('/bendahara', 'add_kas');
+    Route::post('/evaluation', 'add_evaluation');
 });
