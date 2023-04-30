@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Login;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UpdatePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,9 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
 
     Route::post('/bendahara', 'add_kas');
     Route::post('/evaluation', 'add_evaluation');
+});
+
+Route::middleware('auth')->controller(UpdatePasswordController::class)->group(function() {
+    Route::get('/password/edit', 'edit')->name('password.edit');
+    Route::post('/password/edit', 'update');
 });
