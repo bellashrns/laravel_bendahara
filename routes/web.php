@@ -7,13 +7,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\UpdatePasswordController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +37,9 @@ Route::middleware('admin')->controller(AdminController::class)->group(function()
 });
 
 Route::middleware('auth')->controller(DashboardController::class)->group(function() {
-    Route::get('/dashboard', 'index');
+    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::post('/dashboard', 'update_password');
+    
     Route::get('/bendahara', 'bendahara');
     Route::get('/user', 'user');
     Route::get('/evaluation', 'evaluation');
@@ -53,10 +48,6 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
     Route::post('/evaluation', 'add_evaluation');
 });
 
-Route::middleware('auth')->controller(UpdatePasswordController::class)->group(function() {
-    Route::get('/password/edit', 'edit')->name('password.edit');
-    Route::post('/password/edit', 'update');
-});
 
 Route::middleware('guest')->controller(ResetPasswordController::class)->group(function() {
     Route::get('/forgot-password', 'index')->name('password.request');

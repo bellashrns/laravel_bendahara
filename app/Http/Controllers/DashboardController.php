@@ -8,6 +8,8 @@ use App\Models\Bendahara;
 use App\Models\Message;
 // utk current datetime
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class DashboardController extends Controller
 {
@@ -80,7 +82,8 @@ class DashboardController extends Controller
         }
 
         $id = $request->id;
-        $kas = Bendahara()->$id;
+        $kas = Bendahara::find($id);
+        // $kas = Bendahara()->$id;
         $kas->image = $image;
         $kas->month = $request->month;
         $kas->type = $request->type;
@@ -106,5 +109,27 @@ class DashboardController extends Controller
         $eval->save();
 
         return redirect('/evaluation');
+    }
+
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:8|max:20|confirmed',
+        ]);
+
+        if(Hash::check($request->current_password, auth()->user()->password)){
+
+            auth()->user()->update([
+                'password' => bcrypt($request->password),
+            ]);
+            
+            // serah mau redirect kemana
+            return redirect('/dashboard')->with('message', "Your password has been changed");
+        }
+
+        throw ValidationException::withMessages([
+            'current_password' => 'Your current password does not match with our record',
+        ]);
     }
 }
