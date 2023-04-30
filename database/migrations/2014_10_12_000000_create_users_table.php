@@ -18,6 +18,11 @@ return new class extends Migration
                 ->comment('1:admin, 2:user', '3:bendahara', '4:hrd')->default(2);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('divisi')->nullable();
+            $table->string('nim')->nullable();
+            $table->string('angkatan')->nullable();
+            $table->string('notelp')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('password');
             $table->string('phone');
             $table->string('address');

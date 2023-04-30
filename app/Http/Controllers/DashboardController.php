@@ -18,7 +18,11 @@ class DashboardController extends Controller
 
     public function bendahara()
     {
-        return view('dashboard.bendahara');
+        $bendaharas = Bendahara::all();
+
+        return view('dashboard.bendahara', [
+            'bendaharas' => $bendaharas
+        ]);
     }
 
     public function user()
@@ -45,14 +49,12 @@ class DashboardController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'month' => 'required',
             'type' => 'required',
-            'notes' => 'required',
-            'status' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('bukti_kas');
         }
-        
+
         $currentDatetime = Carbon::now()->toDateTimeString();
 
         $kas = new Bendahara();
@@ -62,11 +64,32 @@ class DashboardController extends Controller
         $kas->value = $request->value;
         $kas->notes = $request->notes;
         $kas->status = $request->status;
+        $kas->name = auth()->user()->name;
+        $kas->user_id = auth()->user()->id;
         $kas->date = $currentDatetime;
         $kas->name = auth()->user()->name;
         $kas->save();
 
-        return redirect('/dashboard');
+        return redirect('/bendahara');
+    }
+
+    public function edit_kas (Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('bukti_kas');
+        }
+
+        $id = $request->id;
+        $kas = Bendahara()->$id;
+        $kas->image = $image;
+        $kas->month = $request->month;
+        $kas->type = $request->type;
+        $kas->value = $request->value;
+        $kas->notes = $request->notes;
+        $kas->status = $request->status;
+        $kas->update();
+
+        return redirect('/bendahara');
     }
 
     public function add_evaluation (Request $request)
