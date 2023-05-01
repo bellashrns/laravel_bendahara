@@ -16,7 +16,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.dashboard');
+        $msgs = Message::all();
+
+        return view('dashboard.dashboard', [
+            'msgs' => $msgs
+        ]);
     }
 
     public function bendahara()
@@ -34,6 +38,15 @@ class DashboardController extends Controller
         
         return view('dashboard.user', [
             'users' => $users
+        ]);
+    }
+
+    public function choose_user($id)
+    {
+        $penerima = User::where('id', $id)->first();
+        
+        return view('dashboard.profile', [
+            'penerima' => $penerima
         ]);
     }
 
@@ -116,12 +129,15 @@ class DashboardController extends Controller
         ]);
 
         $eval = new Message();
-        $eval->sender = auth()->user()->id;
+        $eval->sender = auth()->user()->name;
+        if ($request->status) {
+            $eval->anonymous = $request->status;
+        }
         $eval->receiver = $request->receiver;
         $eval->message = $request->message;
         $eval->save();
 
-        return redirect('/evaluation');
+        return redirect('/dashboard')->with('message', "Your message has been submitted!");
     }
 
     public function update_password(Request $request)
@@ -146,16 +162,16 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function edit_kas(Bendahara $user){
-        $user = Bendahara::find($user->user_id);
+    public function edit_kas($user){
+        $user = Bendahara::where('id', $user)->first();
         
         return view('dashboard.edit-kas', [
-            'user_bendahara' => $user
+            'user' => $user
         ]);
     }
 
     public function update_kas(Bendahara $user, Request $request){
-        $user = Bendahara::find($user->user_id);
+        $user = Bendahara::find($user->id);
 
         $user->type = request('type');
         $user->value = request('value');

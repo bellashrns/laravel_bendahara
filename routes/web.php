@@ -41,6 +41,7 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
     
     Route::get('/bendahara', 'bendahara');
     Route::get('/user', 'user');
+    Route::get('/user/{id}', 'choose_user');
     Route::get('/evaluation', 'evaluation');
 
     Route::post('/bendahara', 'add_kas');

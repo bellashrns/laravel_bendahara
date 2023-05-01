@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>UMN Radio | Kas</title>
+    <title>UMN Radio | Ultimacrews</title>
 </head>
 
 <body>
+
 <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"
         class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span class="sr-only">Open sidebar</span>
@@ -107,97 +108,70 @@
     <div class="p-4 xl:ml-80">
         <div class="bg-clip-border rounded-xl bg-white text-gray-700 shadow-md p-4 gap-4 mb-4 mt-2 w-full">
             <div class="relative bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 mb-4 grid h-24 place-items-center bg-gradient-to-r from-[#011F39] to-[#629FD4]">
-                <h3 class="block antialiased tracking-normal leading-snug text-2xl font-medium text-white">Edit Kas</h3>
+                <h3 class="block antialiased tracking-normal leading-snug text-2xl font-medium text-white">Profile</h3>
             </div>
-            @if (auth()->user()->role == 3)
-            <form action="{{'/bendahara/' . $user->id }}" method="POST" enctype="multipart/form-data">
+            <div class="md:flex items-center gap-4 p-4">
+                <img src="{{ asset('storage/' . $penerima->image) }}" alt="" class="rounded-lg h-56 w-56">
+                <div class="flex flex-col text-left ml-2">
+                    <h1>{{ $penerima->name }}</h1>
+                    <p class="text-gray-500 font-semibold">{{ $penerima->divisi }}</p>
+                </div>
+            </div>
+            <div class="p-4">
+                <h3>Profile Information</h3>
+                <p class="mt-4 text-gray-500 font-semibold">Personal Information</p>
+            </div>
+            <div class="grid md:grid-cols-2 px-8">
+                <div class="grid grid-cols-2">
+                    <p class="font-bold">Fullname</p>
+                    <p>{{ $penerima->name }}</p>
+                    <p class="font-bold">NIM</p>
+                    <p>{{ $penerima->nim }}</p>
+                    <p class="font-bold">Address</p>
+                    <p>{{ $penerima->address }}</p>
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="font-bold">Date of Birth</p>
+                    <p>{{ $penerima->birthdate }}</p>
+                    <p class="font-bold">Angkatan</p>
+                    <p>{{ $penerima->angkatan}}</p>
+                </div>
+            </div>
+            <div class="p-4">
+                <p class="mt-4 text-gray-500 font-semibold">Contact Information</p>
+            </div>
+            <div class="grid md:grid-cols-2 px-8">
+                <div class="grid grid-cols-2">
+                    <p class="font-bold">Phone Number</p>
+                    <p>{{ $penerima->notelp }}</p>
+                    <p class="font-bold">Line ID</p>
+                    <p>{{ $penerima->line }}</p>
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="font-bold">Instagram</p>
+                    <p>{{ $penerima->instagram }}</p>
+                    <p class="font-bold">Email</p>
+                    <p>{{ $penerima->email }}</p>
+                </div>
+            </div>
+            <div class="p-4 mt-2">
+                <h3>Evaluation Form</h3>
+                <p>Send your evaluation or appreciation to {{ $penerima->name }} here:</p>
+            </div>
+            <form action="/evaluation" method="POST" class="w-full px-4">
                 @csrf
-                @method('PUT')
-                        <div class="grid grid-cols-2">
-                            <div>
-                                Name
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11">
-                            <input type="text" id="disabled-input-2" aria-label="disabled input 2" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $user->name }}" disabled readonly>
-                            </div>
-                            <div>
-                                File
-                            </div>
-                            <div class="relative w-full min-w-[200px] mt-2 mb-2">
-                                <a href="{{ 'http://127.0.0.1:8000/storage/'. $user->image }}" target="_blank" rel="noopener noreferrer">
-                                    <img src="{{ asset('storage/' . $user->image) }}" alt="" class="h-20 w-20">   
-                                </a>          
-                            </div>
-                            <div>
-                                Month
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11">
-                            <input type="text" id="disabled-input-2" aria-label="disabled input 2" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $user->month }}" disabled readonly>
-                            </div>
-                            <div>
-                                Date
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11 mt-1">
-                            <input type="text" id="disabled-input-2" aria-label="disabled input 2" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $user->date }}" disabled readonly>
-                            </div>
-                            <div>
-                                Type
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11 mt-1">
-                            <select id="type" name="type" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ( $user->type == "Expense" )
-                                <option value="Expense">Expense</option>
-                                <option value="Income">Income</option>
-                                @else
-                                <option value="Income">Income</option>
-                                <option value="Expense">Expense</option>
-                                @endif
-                            </select>
-                            </div>
-                            <div>
-                                Value
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11">
-                                <input id="value" name="value" value="{{ $user->value }}" type="text" placeholder="Required" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            </div>
-                            <div>
-                                Notes
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11">
-                                <input id="notes" name="notes" type="text" value="{{ $user->notes }}" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            </div>
-                            <div>
-                                Status
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11 mt-1">
-                            <select id="status" name="status" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ( $user->status == "1" )
-                                <option value="1">Pending</option>
-                                <option value="2">Approved</option>
-                                <option value="3">Declined</option>
-                                @elseif ( $user->status == "2" )
-                                <option value="2">Approved</option>
-                                <option value="1">Pending</option>
-                                <option value="3">Declined</option>
-                                @else
-                                <option value="3">Declined</option>
-                                <option value="1">Pending</option>
-                                <option value="2">Approved</option>
-                                @endif
-                            </select>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="relative w-full min-w-[200px] h-11 mt-2">
-                                <button type="submit" class="bg-gradient-to-r from-[#011F39] to-[#629FD4] hover:shadow-lg hover:shadow-blue-500/40 text-white font-bold py-2 px-4 rounded-lg block w-full">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                @endif
+                <input id="receiver" name="receiver" type="hidden" value="{{ $penerima->name }}">
+                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room for Improvement</label>
+                <textarea name="message" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                <input name="status" id="status" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="status" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Send as Anonymous</label>
+                <button type="submit" class="mt-2 bg-gradient-to-r from-[#011F39] to-[#629FD4] hover:shadow-lg hover:shadow-blue-500/40 text-white font-bold py-2 px-4 rounded-lg block w-full">
+                    Send
+                </button>
+            </form>
         </div>
     </div>
+
 </body>
 
 </html>
