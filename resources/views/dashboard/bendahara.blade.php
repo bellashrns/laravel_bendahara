@@ -357,7 +357,7 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="{{ '/bendahara/' . $bendahara->id . '/edit' }}" class="font-bold text-blue-500">EDIT</a>
+                                        <a href="/bendahara/{{ $bendahara -> id}}/edit" class="font-bold text-blue-500">EDIT</a>
                                     </td>
                                 </tr>
                                 @endforeach 

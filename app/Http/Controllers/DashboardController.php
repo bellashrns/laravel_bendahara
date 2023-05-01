@@ -162,11 +162,13 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function edit_kas($user){
-        $user = Bendahara::where('id', $user)->first();
+    public function edit_kas(Bendahara $user){
+        $user = Bendahara::find($user->id);
+        $bendaharas = Bendahara::all();
         
         return view('dashboard.edit-kas', [
-            'user' => $user
+            'user_bendahara' => $user,
+            'bendaharas' => $bendaharas
         ]);
     }
 

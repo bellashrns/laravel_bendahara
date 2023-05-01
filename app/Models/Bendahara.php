@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Bendahara extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'type',
+        'value',
+        'notes',
+        'status'
+    ];
     
     protected $guarded = ['id'];
 }

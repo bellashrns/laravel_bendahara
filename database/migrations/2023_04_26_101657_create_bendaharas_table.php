@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('name');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->string('name');
+            $table->string('image');
             $table->timestamps();
             $table->softDeletes();
         });
