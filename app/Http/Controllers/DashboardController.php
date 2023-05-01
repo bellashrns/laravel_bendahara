@@ -88,25 +88,25 @@ class DashboardController extends Controller
         return redirect('/bendahara');
     }
 
-    public function edit_kas (Request $request)
-    {
-        if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('bukti_kas');
-        }
+    // public function edit_kas (Request $request)
+    // {
+    //     if ($request->hasFile('image')) {
+    //         $image = $request->file('image')->store('bukti_kas');
+    //     }
 
-        $id = $request->id;
-        $kas = Bendahara::find($id);
-        // $kas = Bendahara()->$id;
-        $kas->image = $image;
-        $kas->month = $request->month;
-        $kas->type = $request->type;
-        $kas->value = $request->value;
-        $kas->notes = $request->notes;
-        $kas->status = $request->status;
-        $kas->update();
+    //     $id = $request->id;
+    //     $kas = Bendahara::find($id);
+    //     // $kas = Bendahara()->$id;
+    //     $kas->image = $image;
+    //     $kas->month = $request->month;
+    //     $kas->type = $request->type;
+    //     $kas->value = $request->value;
+    //     $kas->notes = $request->notes;
+    //     $kas->status = $request->status;
+    //     $kas->update();
 
-        return redirect('/bendahara');
-    }
+    //     return redirect('/bendahara');
+    // }
 
     public function add_evaluation (Request $request)
     {
@@ -144,5 +144,25 @@ class DashboardController extends Controller
         throw ValidationException::withMessages([
             'current_password' => 'Your current password does not match with our record',
         ]);
+    }
+
+    public function edit_kas(Bendahara $user){
+        $user = Bendahara::find($user->user_id);
+        
+        return view('dashboard.edit-kas', [
+            'user_bendahara' => $user
+        ]);
+    }
+
+    public function update_kas(Bendahara $user, Request $request){
+        $user = Bendahara::find($user->user_id);
+
+        $user->type = request('type');
+        $user->value = request('value');
+        $user->notes = request('notes');
+        $user->status = request('status');
+        $user->save();
+
+        return redirect('/bendahara');
     }
 }

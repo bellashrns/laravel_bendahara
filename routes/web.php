@@ -44,6 +44,10 @@ Route::middleware('auth')->controller(DashboardController::class)->group(functio
     Route::get('/evaluation', 'evaluation');
 
     Route::post('/bendahara', 'add_kas');
+    
+    Route::get('/bendahara/{user}/edit', 'edit_kas');
+    Route::put('/bendahara/{user}', 'update_kas');
+
     Route::post('/evaluation', 'add_evaluation');
 
     Route::get('/logout', 'logout')->name('logout');
