@@ -26,6 +26,9 @@
                         Log In</h3>
                 </div>
                 <div class="p-6 flex flex-col gap-4">
+                    <!-- @if (session()->has('loginError'))
+                    <p>{{ session('loginError') }}</p>
+                    @endif -->
                     @csrf
                     <div class="relative w-full min-w-[200px] h-11">
                         <input name="email" type="email" placeholder="Email"

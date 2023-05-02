@@ -163,10 +163,17 @@
                                 class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                         </div>
                         <div class="relative w-full min-w-[200px] h-11 mb-3">
+                            @if (session()->has('messages'))
+                            <button type="button"
+                                class="bg-green-500 hover:shadow-lg hover:shadow-blue-500/40 text-white font-bold py-2 px-4 rounded-lg block w-full">
+                                Successfully Changed
+                            </button>
+                            @else
                             <button type="submit"
                                 class="bg-gradient-to-r from-[#011F39] to-[#629FD4] hover:shadow-lg hover:shadow-blue-500/40 text-white font-bold py-2 px-4 rounded-lg block w-full">
                                 Change Password
                             </button>
+                            @endif
                         </div>
                     </div>
                 </form>

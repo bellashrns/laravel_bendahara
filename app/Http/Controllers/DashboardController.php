@@ -137,7 +137,7 @@ class DashboardController extends Controller
         $eval->message = $request->message;
         $eval->save();
 
-        return redirect('/dashboard')->with('message', "Your message has been submitted!");
+        return back()->with('message', 'Submitted');
     }
 
     public function update_password(Request $request)
@@ -153,8 +153,7 @@ class DashboardController extends Controller
                 'password' => bcrypt($request->password),
             ]);
             
-            // serah mau redirect kemana
-            return redirect('/dashboard')->with('message', "Your password has been changed");
+            return back()->with('messagee', 'Successfully Changed');
         }
 
         throw ValidationException::withMessages([
